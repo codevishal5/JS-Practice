@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+</head>
+<style>
+
+     /* Nav-Bar Start */
+        
+
+#navbar{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: burlywood;
+    padding: 10px;
+    top: 0%;
+    position: fixed;
+    z-index: 1;
+    left: 0%;
+}
+
+#navbar a{
+    text-decoration: none;
+    color: brown;
+    font-size: 20px;
+}
+
+#navbar a:hover{
+    color: rgb(31, 27, 27);
+}
+        /* Nav-Bar End*/
+
+
+form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+input[type="text"],
+input[type="email"],input[type="number"] ,input[type="password"] {
+    width: auto;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+
+}
+
+input[type="submit"]:hover {
+    background-color: #328036;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #333;
+}
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #f4f4f4;
+    margin: 5px;
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+</style>
+<body>
+     <!-- Nav-Bar Start -->
+
+     <div id="container">
+
+        <div id="navbar">
+            
+            
+                <a href="#home">Home</a>
+                <a href="./mens.html">Men's</a>
+                <a href="./mens.html">Women's</a>
+                <a href="./payment.html">Payment</a>
+                <a href="./login.html">Sign In</a>
+                <a href="./signup.html">Sign Up </a>
+                <a href="./cart.html">Cart 🛒</a>
+        </div>
+
+    </div>    
+    <!-- Nav-Bar End  -->
+
+    <div>
+        <h1>Enter Your Payment Details</h1>
+        
+        <form>
+
+            <label for="cardNumber">Card Number:</label>
+            <input type="number" id="cardNumber" name="cardNumber" required>
+
+            <label for="expiryDate">Expiry Date:</label>
+            <input type="number" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="number" id="cvv" name="cvv" required>
+
+            <label for="billingAddress">Billing Address:</label>
+            <input type="text" id="billingAddress" name="billingAddress" required><br>
+
+            <label for="zipCode">Zip Code:</label>
+            <input type="number" id="zipCode" name="zipCode" required>
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required>
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="number" id="phoneNumber" name="phoneNumber" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="nameOnCard">Name on Card:</label>
+            <input type="text" id="nameOnCard" name="nameOnCard" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <input type="submit" value="Pay Now">
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+<script>
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        // Get form values
+        const cardNumber = document.getElementById('cardNumber').value;
+
+        const expiryDate = document.getElementById('expiryDate').value;
+
+        const cvv = document.getElementById('cvv').value;
+
+        const billingAddress = document.getElementById('billingAddress').value;
+        const zipCode = document.getElementById('zipCode').value;
+
+        const country = document.getElementById('country').value;
+
+        const phoneNumber = document.getElementById('phoneNumber').value;
+
+        const email = document.getElementById('email').value;
+
+        const nameOnCard = document.getElementById('nameOnCard').value;
+
+        const amount = document.getElementById('amount').value;
+
+        // Perform payment processing logic here (e.g., API call to payment gateway)
+        if(cardNumber.length != 16){
+            alert("Please enter a valid card number of 16 digits.");
+            return;
+        }
+        if(cvv.length != 3){
+            alert("Please enter a valid CVV of 3 digits.");
+            return;
+        }
+        if(zipCode.length != 6){
+            alert("Please enter a valid zip code of 6 digits.");
+            return;
+        }
+        if(phoneNumber.length != 10){
+            alert("Please enter a valid phone number of 10 digits.");
+            return;
+        }
+        if(expiryDate.length != 4){
+            alert("Please enter a valid expiry date of 4 digits.");
+            return;
+        }
+        if(amount.length == 0){
+            alert("Please enter a valid amount.");
+            return;
+        }
+        if(billingAddress.length == 0){
+            alert("Please enter a valid billing address.");
+            return;
+        }
+        if(country.length == 0){
+            alert("Please enter a valid country.");
+            return;
+        }
+        if(nameOnCard.length == 0){
+            alert("Please enter a valid name on card.");
+            return;
+        }
+        if(email.length == 0){
+            alert("Please enter a valid email.");
+            return;
+        }
+        alert(`Payment of $${amount} processed successfully!`);
+    });
+
+</script>

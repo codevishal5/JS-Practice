@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+</head>
+<style>
+    
+     /* Nav-Bar Start */
+        
+
+#navbar{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: burlywood;
+    padding: 10px;
+    top: 0%;
+    position: fixed;
+    z-index: 1;
+    left: 0%;
+}
+
+#navbar a{
+    text-decoration: none;
+    color: brown;
+    font-size: 20px;
+}
+
+#navbar a:hover{
+    color: rgb(31, 27, 27);
+}
+        /* Nav-Bar End*/
+
+
+
+
+#checkout .box{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.remove{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove:hover{
+    background-color: darkred;
+}
+
+.remove:active{
+    background-color: lightcoral;
+}
+
+
+
+
+
+
+
+</style>
+<body>
+     <!-- Nav-Bar Start -->
+
+     <div id="container">
+
+        <div id="navbar">
+            
+            
+                <a href="#home">Home</a>
+                <a href="./mens.html">Men's</a>
+                <a href="./mens.html">Women's</a>
+                <a href="./payment.html">Payment</a>
+                <a href="./login.html">Sign In</a>
+                <a href="./signup.html">Sign Up </a>
+                <a href="./cart.html">Cart 🛒</a>
+        </div>
+
+    </div>    
+    <!-- Nav-Bar End  -->
+
+        <p></p>
+
+    <div id="checkout"></div>
+
+</body>
+</html>
+<script>
+
+    var cartData = JSON.parse(localStorage.getItem("cartData"));
+
+    var totalSum = cartData.reduce(function(sum, element) {
+    return sum + Number(element.price);
+}, 0);
+
+    var totalItem = cartData.length;
+
+    document.querySelector('p').innerText = 'You have' + " " + totalItem + " " + "items" + " " + "in your cart" + " " + "and the total amount is" + " " + totalSum + "₹" + " " + "only.";
+
+    cartData.forEach((cartItem, cartIndex) => {
+        
+        var box = document.createElement('div');
+        box.setAttribute('class', 'box');
+
+        var image = document.createElement('img');
+        image.setAttribute('class', 'image');
+
+        image.src = cartItem.image;
+
+        var name = document.createElement('h2');
+        name.setAttribute('class', 'name');
+        name.innerText = cartItem.name;
+
+        var price = document.createElement('h3');
+        price.setAttribute('class', 'price');
+        price.innerText = cartItem.price;
+
+        var remove = document.createElement('button');
+        remove.setAttribute('class', 'remove');
+        remove.innerText = 'Remove';
+
+        remove.addEventListener('click', function () {
+            cartData.splice(cartIndex, 1);
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            window.location.reload();
+        });
+
+
+        box.append(image, name, price, remove);
+        document.querySelector('#checkout').append(box);
+
+    });
+
+</script>

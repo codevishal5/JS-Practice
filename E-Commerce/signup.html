@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+
+        /* Nav-Bar Start */
+        
+
+#navbar{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: burlywood;
+    padding: 10px;
+    top: 0%;
+    position: fixed;
+    z-index: 1;
+    left: 0%;
+}
+
+#navbar a{
+    text-decoration: none;
+    color: brown;
+    font-size: 20px;
+}
+
+#navbar a:hover{
+    color: rgb(31, 27, 27);
+}
+        /* Nav-Bar End*/
+
+    #signup{
+        margin-top: 100px;
+        text-align: center;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #signup h1{
+        font-size: 40px;
+        color: brown;
+    }
+
+    #signup form{
+        display: inline-block;
+        text-align: left;
+        margin-top: 20px;
+    }
+
+
+    #signup label{
+        font-size: 20px;
+        color: brown;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 300px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        background-color: burlywood;
+        color: brown;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: rgb(31, 27, 27);
+        color: white;
+    }
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Nav-Bar Start -->
+
+    <div id="container">
+
+        <div id="navbar">
+            
+            
+                <a href="#home">Home</a>
+                <a href="./mens.html">Men's</a>
+                <a href="./mens.html">Women's</a>
+                <a href="./payment.html">Payment</a>
+                <a href="./login.html">Sign In</a>
+                <a href="./signup.html">Sign Up </a>
+                <a href="./cart.html">Cart 🛒</a>
+        </div>
+
+    </div>    
+    <!-- Nav-Bar End  -->
+
+    <div id="signup">
+        <h1>Create an account</h1>
+    <form >
+
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Register">
+
+    </form>
+
+
+
+
+    </div>
+    
+</body>
+</html>
+<script>
+
+    document.querySelector('form').addEventListener('submit',signupFn);
+
+
+    var userDate;
+
+    if(localStorage.getItem('userData') === null){
+        userData = [];
+    }else{
+        userData = JSON.parse(localStorage.getItem('userData'));
+    }
+
+
+    function signupFn(event){
+        event.preventDefault();
+
+        var userObj ={
+
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        }
+
+        userData.push(userObj);
+
+        localStorage.setItem('userData',JSON.stringify(userData));
+        alert('Account Created Successfully!');
+
+    }
+
+
+
+</script>
